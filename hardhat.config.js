@@ -1,16 +1,10 @@
-require("@nomiclabs/hardhat-waffle")
-require("@nomiclabs/hardhat-etherscan")
-require("hardhat-deploy")
-require("solidity-coverage")
-require("hardhat-gas-reporter")
-require("hardhat-contract-sizer")
+require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config()
-require("hardhat-ignore-warnings")
+
 
 /** @type import('hardhat/config').HardhatUserConfig */
-
- const  GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
- const PRIVATE_KEY= process.env.PRIVATE_KEY;
+const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 
 module.exports = {
@@ -41,12 +35,12 @@ module.exports = {
     //   chainId: 421611,
     // },
     // },
-       goerli: {
-         url: GOERLI_RPC_URL ,
-         accounts: [PRIVATE_KEY],
-       saveDeployments: true,
-      chainId: 5,
-     },
+    sepolia: {
+      url: SEPOLIA_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      saveDeployments: true,
+      chainId: 11155111,
+    },
   },
   // gasReporter: {
   //   enabled: REPORT_GAS,
@@ -68,6 +62,10 @@ module.exports = {
     compilers: [
       {
         version: "0.8.0",
+      },
+      {
+        version: "0.8.20",
+        settings: {},
       },
     ],
 

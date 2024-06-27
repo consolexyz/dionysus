@@ -2,12 +2,9 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-// import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Crowdsale {
-
- using SafeMath for uint256; 
 
   // The token being sold
   ERC20 public token;
@@ -25,10 +22,8 @@ contract Crowdsale {
 
   address owner;
 
- uint256 public investorMinCap = 40000000000000000;
-
- uint256 public investorMaxCap= 1000000000000000000;
-
+  uint256 public investorMinCap = 40000000000000000;
+  uint256 public investorMaxCap = 1000000000000000000;
 
   event TokenPurchase(
     address indexed purchaser,
@@ -38,12 +33,13 @@ contract Crowdsale {
   );
 
   constructor(uint256 _rate, address payable _wallet, ERC20 _token)  {
-    require(_rate > 0);
-    require(_wallet != address(0));
+    require(_rate > 0, "Rate must be greater than 0");
+    require(_wallet != address(0), "Wallet address must not be 0");
 
     rate = _rate;
     wallet = _wallet;
     token = _token;
+    owner = msg.sender;  // Initialize owner
   }
 
   // -----------------------------------------
@@ -54,13 +50,11 @@ contract Crowdsale {
     buyTokens(msg.sender);
   }
 
-  
   receive() external payable {
-        // custom function code
-    }
+    // custom function code
+  }
 
   function buyTokens(address _beneficiary) public payable {
-
     uint256 weiAmount = msg.value;
     _preValidatePurchase(_beneficiary, weiAmount);
 
@@ -94,14 +88,12 @@ contract Crowdsale {
   )
     internal
   {
-    require(_beneficiary != address(0));
-    require(_weiAmount != 0);
-    // optional override
-    //  super._preValidatePurchase(_beneficiary, _weiAmount);
+    require(_beneficiary != address(0), "Beneficiary address must not be 0");
+    require(_weiAmount != 0, "Wei amount must not be 0");
     uint256 _existingContribution = contributions[_beneficiary];
-    uint256 _newContribution = _existingContribution.add(_weiAmount);
-    require(_newContribution >= investorMinCap , "amount is not enough") ;
-    require( _newContribution <= investorMaxCap , "exceeded maximum cap");
+    uint256 _newContribution = _existingContribution + _weiAmount;
+    require(_newContribution >= investorMinCap, "Amount is not enough");
+    require(_newContribution <= investorMaxCap, "Exceeded maximum cap");
     contributions[_beneficiary] = _newContribution;
   }
 
@@ -111,7 +103,7 @@ contract Crowdsale {
   )
     internal
   {
-    
+    // optional override
   }
 
   function _deliverTokens(
@@ -151,9 +143,9 @@ contract Crowdsale {
     wallet.transfer(msg.value);
   }
 
-   function transferToken() public {
-        require(msg.sender == owner, "You are not owner");
-        uint256 balance = token.balanceOf(address(this));
-        token.transfer(owner, balance);
-    }
+  function transferToken() public {
+    require(msg.sender == owner, "You are not the owner");
+    uint256 balance = token.balanceOf(address(this));
+    token.transfer(owner, balance);
+  }
 }
