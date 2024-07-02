@@ -12,9 +12,9 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 const { chains, provider } = configureChains(
-  [chain.goerli],
+  [chain.sepolia],
   [
-alchemyProvider({ apiKey: "n8zuDwBLcJ7RCuZDZrMZGKJ8ykdIk_2t"}),
+    alchemyProvider({ apiKey: "n8zuDwBLcJ7RCuZDZrMZGKJ8ykdIk_2t" }),
     publicProvider(),
   ]
 );

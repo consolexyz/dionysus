@@ -7,7 +7,7 @@ function Cta() {
       <div className="cta-container">
         <div className="cta-title">
           <h1>
-          Dionysus
+            Dionysus
           </h1>
         </div>
         <div className="cta-text">
@@ -17,7 +17,7 @@ function Cta() {
           </p>
         </div>
         <div className="cta-btn btn">
-          <Link href="/presale">Enter App&#8594;</Link>
+          <Link href="/presale">Enter Presale &#8594;</Link>
         </div>
       </div>
     </>

@@ -14,7 +14,7 @@ function Rounds() {
           <div className="steps">
             <h3>Step 1</h3>
             <p>
-              Bridge ETH to Arbitrium to participate in the presale rounds.
+              Get to participate in the presale rounds.
               Minimum of 0.04ETH and maximum of 1ETH
             </p>
           </div>
@@ -29,13 +29,10 @@ function Rounds() {
           <div className="steps">
             <h3>Step 3</h3>
             <p>
-              The contract will send your $CAIFU token to your wallet after your
+              The contract will send your $DION token to your wallet after your
               deposit is confirmed.
             </p>
           </div>
-        </div>
-        <div className="rounds-btn btn">
-          <Link href="/presale">Go to presale</Link>
         </div>
       </div>
     </section>

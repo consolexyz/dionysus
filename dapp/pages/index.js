@@ -3,6 +3,7 @@ import Head from "next/head";
 import Cta from "../components/Cta";
 import Header from "../components/Header";
 import Rounds from "../components/Rounds";
+import Footer from "../components/Footer";
 export default function Home() {
   return (
     <>
@@ -22,6 +23,7 @@ export default function Home() {
       </main>
       {/* <About /> */}
       <Rounds />
+      <Footer />
     </>
   );
 }

@@ -7,13 +7,13 @@ import abi from "../constants/abi.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Modal({ setopenModal, caifu, amount,  }) {
+function Modal({ setopenModal, caifu, amount, }) {
   const { address } = useAccount();
   const [TxnSuccess, setTxnSuccess] = useState(false);
   const [isTxnLoading, setisTxnLoading] = useState(false);
   const { isWeb3Enabled, web3EnableError, Moralis } = useMoralis();
   const { data: tokenInfo } = useToken({
-    address: "0x4B352AD6EF51Acd494e3c20d46413787Da405C22",
+    address: "0x3a368DdB1b8f31B4748d7a4b51C149f0A02c1FFF",
   });
   // defining contract function
   const {
@@ -24,7 +24,7 @@ function Modal({ setopenModal, caifu, amount,  }) {
     isLoading,
   } = useWeb3Contract({
     abi: abi,
-    contractAddress:"0x872D44F6456EBe4395744b5D8F3C174d9afD197c",
+    contractAddress: "0xbc7F362C1a5dB9f1dBa9bad54E028257BA4a3c56",
     functionName: "buyTokens",
     params: {
       _beneficiary: address,
@@ -34,7 +34,7 @@ function Modal({ setopenModal, caifu, amount,  }) {
 
   //buy token function
   const buyToken = async () => {
-    if ( isWeb3Enabled) {
+    if (isWeb3Enabled) {
       setisTxnLoading(true);
       await buyTokens({
         onSuccess: handleSuccess,
@@ -114,8 +114,8 @@ function Modal({ setopenModal, caifu, amount,  }) {
             {/* svg to show txn loading*/}
             <div className={`${isTxnLoading ? "show" : "hide"}`}>
               <Image
-                height="200"
-                width="200"
+                height="50"
+                width="50"
                 alt="transaction loading"
                 src="/assets/spinner.svg"
               />
@@ -123,8 +123,8 @@ function Modal({ setopenModal, caifu, amount,  }) {
             {/* svg to show txn complete */}
             <div className={`${TxnSuccess ? "show" : "hide"}`}>
               <Image
-                height="128"
-                width="128"
+                height="50"
+                width="50"
                 alt="transaction confirmation succesful"
                 src="/assets/check.gif"
               />
@@ -132,8 +132,8 @@ function Modal({ setopenModal, caifu, amount,  }) {
             {/* svg to show on error */}
             <div className={`${error ? "show" : "hide"}`}>
               <Image
-                height="128"
-                width="128"
+                height="50"
+                width="50"
                 alt="transaction failed due to an error"
                 src="/assets/cancel.svg"
               />
@@ -143,7 +143,7 @@ function Modal({ setopenModal, caifu, amount,  }) {
               <h4>{TxnSuccess ? "Transaction Processed" : "Swapping"}</h4>
               <p>
                 <span>{amount} ETH</span>&nbsp;for &nbsp;
-                <span>{dion.toFixed(2)} $DION</span>
+                {/* <span>{dion.toFixed(2)} $DION</span> */}
               </p>
               <a
                 href={`${process.env.BLOCKCHAIN_EXPLORER_URL}/${contractData?.hash}`}

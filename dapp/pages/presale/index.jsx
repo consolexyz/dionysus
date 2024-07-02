@@ -32,7 +32,7 @@ function Presale() {
             <span>{zeroPad(days)}</span>
             <p>Days</p>
           </div>
-          <div className="countdown countdown_hours">
+          <div className="c ountdown countdown_hours">
             <span>{zeroPad(hours)}</span>
             <p>Hours</p>
           </div>
@@ -66,7 +66,7 @@ function Presale() {
   //handling the confirm buy
   const confirmBuy = (e) => {
     e.preventDefault();
-     setopenModal(true);
+    setopenModal(true);
   };
 
   //formatting you-get value
